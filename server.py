@@ -17,7 +17,7 @@ s.listen(2)
 print("Odotetaan yhteyttä, Serveri käynnistyi")
 
 def threaded_client(conn):
-    
+    conn.send(str.encode("Yhdistetty"))
     reply = ""
     while True:
         try:
@@ -35,6 +35,9 @@ def threaded_client(conn):
 
         except:
             break
+
+    print("Yhteys katkesi")
+    conn.close()
 
 while True:
     conn, addr = s.accept()
